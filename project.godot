@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="New Game Project"
+config/name="Ubiquitous Sniffle"
 run/main_scene="uid://bt0vrqrw23j4x"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"

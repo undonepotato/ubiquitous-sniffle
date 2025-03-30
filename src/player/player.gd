@@ -6,7 +6,7 @@ enum States {IDLE, WALKING}
 
 var state: States
 var direction := Vector2.ZERO
-var last_direction := Vector2(0, -1)
+var last_direction := Vector2(0, 1) # default animation: idle down
 
 @onready var animated_sprite = %AnimatedSprite2D as AnimatedSprite2D
 
@@ -22,6 +22,7 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * MOVEMENT_SPEED
 	
 	if last_direction != direction:
+		# don't change states if the state is the same
 		change_state(States.IDLE) if velocity == Vector2.ZERO else change_state(States.WALKING)
 
 	move_and_slide()
@@ -31,6 +32,7 @@ func change_state(new_state: States) -> void:
 	state = new_state
 
 func change_animation(direction: Vector2, last_direction: Vector2) -> void:
+	# prioritize vertical movement
 	if direction.y > 0:
 		animated_sprite.play("walk_down")
 	elif direction.y < 0:
